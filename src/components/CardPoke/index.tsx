@@ -4,7 +4,7 @@ import { RootState } from '../../store/store';
 import { openModal } from '../../slices/modalSlice';
 import { Image, Text, View } from 'react-native';
 import types from '../../actions/poke-actions/types';
-import { Habilidades, Pokemon } from '../../interfaces/pokemon';
+import { Habilidades, Pokemon, Tipos } from '../../interfaces/pokemon';
 
 const CardUser = () => {
 
@@ -15,9 +15,13 @@ const CardUser = () => {
     return poke.abilities.map((habilidade: Habilidades) => {
       return <Text style={{ fontSize: 15, marginLeft: 10, color: "#80838a", fontWeight: 'bold' }}>* {habilidade.ability.name}</Text>
     })
-
   }
 
+  const renderTipos = (poke: Pokemon) => {
+    return poke.types.map((type: Tipos) => {
+      return <Text style={{ fontSize: 15, marginLeft: 10, color: "#80838a", fontWeight: 'bold' }}>* {type.type.name}</Text>
+    })
+  }
   return (
     <View style={{ flex: 1 }}>
       {pokes?.map((poke) => {
@@ -52,6 +56,9 @@ const CardUser = () => {
                 <Text style={{ fontSize: 15, color: "#248", fontWeight: 'bold' }}>Altura: {height}</Text>
                 <Text style={{ fontSize: 15, color: "#248", fontWeight: 'bold' }}>Habilidades: </Text>
                 {renderHabilidades(poke)}
+
+                <Text style={{ fontSize: 15, color: "#248", fontWeight: 'bold' }}>Tipos: </Text>
+                {renderTipos(poke)}
               </View>
             </View>
 
